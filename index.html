@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Godly Unbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#0b0b0e;overflow:hidden}
+body{font-family:'Montserrat',system-ui,sans-serif;color:#fff}
+*{box-sizing:border-box}
+.t{font-weight:900;text-transform:uppercase;letter-spacing:.5px;text-shadow:0 2px 0 #000,0 0 2px #000,0 3px 8px rgba(0,0,0,.6)}
+.bg{position:absolute;inset:-5%;filter:blur(1.8px) brightness(.9);animation:pan 20s ease-in-out infinite alternate}
+@keyframes pan{0%{transform:scale(1.03) translate(0,0)}100%{transform:scale(1.1) translate(-2.5%,-1.5%)}}
+.room{position:absolute;inset:0;width:100%;height:100%}
+.chand{animation:chand 3s ease-in-out infinite alternate}
+@keyframes chand{0%{opacity:.85}50%{opacity:1}53%{opacity:.7}56%{opacity:1}100%{opacity:.9}}
+.dust{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(255,230,190,.7);animation:dust 9s linear infinite}
+@keyframes dust{0%{transform:translate(0,0);opacity:0}20%{opacity:.8}100%{transform:translate(40px,-260px);opacity:0}}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 35%,rgba(0,0,0,.75) 100%)}
+.top{position:absolute;top:58px;left:16px;right:16px;z-index:6;display:flex;justify-content:space-between;align-items:center}
+.chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:8px;background:rgba(0,0,0,.62);border:1.5px solid rgba(255,255,255,.7);font-weight:800;font-size:14px}
+.ava{width:28px;height:28px;border-radius:5px;background:#e8c08a;display:flex;align-items:center;justify-content:center}
+.ui{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 18px 40px}
+.panel{width:100%;padding:0 0 20px;border-radius:12px;background:rgba(12,12,15,.82);border:1.5px solid rgba(255,255,255,.75);box-shadow:0 12px 34px rgba(0,0,0,.6);text-align:center;overflow:hidden;animation:pop .4s cubic-bezier(.2,1.4,.4,1) both}
+.panel.out{animation:out .35s ease-in forwards}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes out{0%{transform:scale(1);opacity:1}100%{transform:scale(.4);opacity:0}}
+.phead{padding:12px 16px;background:linear-gradient(180deg,#d42a2f,#9d1015);border-bottom:1.5px solid rgba(255,255,255,.6);font-size:18px}
+.pbody{padding:20px 18px 0}
+.field{width:100%;height:52px;padding:0 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,.6);background:rgba(0,0,0,.55);color:#fff;font:800 18px 'Montserrat',sans-serif;text-align:center;outline:none}
+.field::placeholder{color:rgba(255,255,255,.45)}
+.field:focus{border-color:#fff;box-shadow:0 0 0 3px rgba(212,42,47,.5)}
+.field.err{border-color:#ff3b3b;animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.btn{min-height:52px;min-width:170px;padding:0 30px;border:1.5px solid rgba(255,255,255,.8);border-radius:8px;cursor:pointer;font:900 20px 'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:1px;color:#fff;background:linear-gradient(180deg,#e0353a 0%,#b5161c 60%,#8e0e13 100%);box-shadow:0 4px 0 #3d0507,0 8px 20px rgba(0,0,0,.5);text-shadow:0 2px 0 rgba(0,0,0,.5);transition:transform .08s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #3d0507}
+.btn.green{background:linear-gradient(180deg,#3fcf55 0%,#1f9e33 60%,#157826 100%);box-shadow:0 4px 0 #083d10,0 8px 20px rgba(0,0,0,.5)}
+.btn.dark{background:linear-gradient(180deg,#3a3b44,#1d1e24);box-shadow:0 4px 0 #000,0 8px 20px rgba(0,0,0,.5)}
+.btn.pulse{animation:btnIn .45s cubic-bezier(.2,1.6,.4,1),pulse 1.2s ease-in-out .45s infinite}
+@keyframes btnIn{0%{transform:scale(0)}100%{transform:scale(1)}}
+@keyframes pulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.22)}}
+.beam{position:absolute;top:0;left:50%;width:520px;height:100%;transform:translateX(-50%);background:linear-gradient(180deg,rgba(255,252,230,.85) 0%,rgba(255,244,200,.4) 45%,rgba(255,235,170,.08) 85%,transparent 100%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);filter:blur(9px);animation:beamIn 1s ease-out both,glow 2.2s ease-in-out 1s infinite alternate;pointer-events:none;z-index:4;mix-blend-mode:screen}
+@keyframes beamIn{0%{opacity:0;transform:translateX(-50%) scaleX(.1)}100%{opacity:1;transform:translateX(-50%) scaleX(1)}}
+@keyframes glow{0%{opacity:.8}100%{opacity:1}}
+.halo{position:absolute;top:-110px;left:50%;width:300px;height:220px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,245,.95),rgba(255,235,180,.4) 45%,transparent 70%);z-index:4;pointer-events:none;animation:fade 1s ease-out both}
+@keyframes fade{0%{opacity:0}100%{opacity:1}}
+.spark{position:absolute;top:-10px;width:5px;height:5px;border-radius:50%;background:#fff8d8;box-shadow:0 0 10px 3px rgba(255,235,170,.9);z-index:4;pointer-events:none;animation:fall 3s linear infinite}
+@keyframes fall{0%{transform:translateY(0);opacity:0}10%{opacity:1}100%{transform:translateY(700px);opacity:0}}
+.feather{position:absolute;top:-30px;width:16px;height:30px;z-index:4;pointer-events:none;animation:feather 5s ease-in-out infinite}
+@keyframes feather{0%{transform:translate(0,-20px) rotate(-20deg);opacity:0}15%{opacity:.9}50%{transform:translate(26px,330px) rotate(25deg)}100%{transform:translate(-18px,700px) rotate(-15deg);opacity:0}}
+
+.drop{position:relative;width:240px;height:240px;animation:drop .55s cubic-bezier(.3,1.25,.5,1) .4s both}
+.drop .boximg{position:relative;display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(0,0,0,.7)) drop-shadow(0 0 18px rgba(255,90,40,.45))}
+.float{position:absolute;inset:0;animation:bob 2.2s ease-in-out 1.1s infinite alternate}
+.aura{position:absolute;left:50%;top:50%;width:150%;height:150%;transform:translate(-50%,-50%);border-radius:50%;background:conic-gradient(#ff2a2a,#ff7a1a,#ffc24a,#ff2a2a,#b3101a,#ff7a1a,#ff2a2a);filter:blur(36px);opacity:.55;animation:spin 5s linear infinite}
+.charge{position:absolute;left:50%;top:50%;width:60%;height:60%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff,rgba(255,240,180,.8) 30%,transparent 70%);animation:charge 1.3s ease-in forwards}
+@keyframes charge{0%{transform:translate(-50%,-50%) scale(.2);opacity:0}100%{transform:translate(-50%,-50%) scale(3.6);opacity:1}}
+@keyframes drop{0%{transform:translateY(-900px)}72%{transform:translateY(0)}84%{transform:translateY(-14px)}100%{transform:none}}
+.shadow{position:absolute;left:50%;bottom:6px;width:200px;height:34px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.75),transparent 70%)}
+.impact{position:absolute;left:50%;bottom:0;width:320px;height:46px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(255,235,180,.75),transparent 70%);animation:impact .7s ease-out .85s both}
+@keyframes impact{0%{opacity:0;transform:translateX(-50%) scaleX(.2)}40%{opacity:1}100%{opacity:.3;transform:translateX(-50%) scaleX(1)}}
+.clabel{margin-top:4px;font-size:24px;letter-spacing:2px;animation:fade .4s ease-out 1s both}
+.btnrow{height:76px;display:flex;align-items:center;justify-content:center;margin-top:8px}
+.flash{position:absolute;inset:0;background:#fff;z-index:9;pointer-events:none;animation:flash .8s ease-out forwards}
+@keyframes flash{0%{opacity:1}100%{opacity:0}}
+.reveal{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center}
+.rays{position:absolute;left:50%;top:180px;width:640px;height:640px;transform:translate(-50%,-50%);background:repeating-conic-gradient(rgba(255,255,255,.16) 0deg 7deg,transparent 7deg 22deg);-webkit-mask:radial-gradient(circle,#000 10%,transparent 62%);mask:radial-gradient(circle,#000 10%,transparent 62%);animation:spin 14s linear infinite;pointer-events:none}
+.raura{position:absolute;left:50%;top:180px;width:300px;height:300px;transform:translate(-50%,-50%);border-radius:50%;filter:blur(55px);opacity:.6;animation:spin 6s linear infinite;pointer-events:none}
+.raura.c{background:conic-gradient(#ff2a2a,#ffb02e,#ffe93b,#3bff7a,#3bd6ff,#7a5bff,#ff3bd6,#ff2a2a)}
+.raura.g{background:radial-gradient(circle,#ff2a2a,#8e0e13)}
+@keyframes spin{0%{transform:translate(-50%,-50%) rotate(0)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
+.itembox{position:relative;width:300px;height:300px;display:flex;align-items:center;justify-content:center;animation:itemIn .8s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes itemIn{0%{transform:scale(0) rotate(-40deg)}100%{transform:none}}
+.itembox img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(255,255,255,.3)) drop-shadow(0 14px 16px rgba(0,0,0,.6));animation:bob 2s ease-in-out .8s infinite alternate}
+@keyframes bob{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
+.iname{position:relative;font-size:26px;line-height:1.15;animation:up .45s ease-out .45s both}
+.rar{position:relative;margin-top:6px;font-size:20px;letter-spacing:3px;animation:up .45s ease-out .6s both}
+.godly{color:#ff2b2b}
+.chroma{background:linear-gradient(90deg,#ff2a2a,#ffb02e,#ffe93b,#3bff7a,#3bd6ff,#7a5bff,#ff3bd6,#ff2a2a);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:chr 2.5s linear infinite,up .45s ease-out .6s both;filter:drop-shadow(0 2px 0 #000)}
+@keyframes chr{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes up{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:none}}
+.mini{width:130px;height:130px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.5)}
+.mini img{max-width:84%;max-height:84%;object-fit:contain}
+.spinner{width:44px;height:44px;margin:0 auto 14px;border-radius:50%;border:5px solid rgba(255,255,255,.2);border-top-color:#e0353a;animation:rot .8s linear infinite}
+@keyframes rot{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.track{width:100%;height:22px;border-radius:6px;background:rgba(0,0,0,.6);border:1.5px solid rgba(255,255,255,.6);overflow:hidden}
+.fill{height:100%;background:linear-gradient(180deg,#e0353a,#9d1015);transition:width .1s linear}
+.prank{position:absolute;inset:0;z-index:8;border:0;cursor:pointer;color:#fff;font:inherit;width:100%;height:100%;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 16px 30px;text-align:center;background:radial-gradient(ellipse at 50% 45%,rgba(255,110,20,.38),rgba(8,4,6,.94) 70%);animation:fade .3s ease-out both}
+.ptxt{font-family:'Lilita One',sans-serif;font-size:64px;line-height:1;color:#ffd84a;text-shadow:-3px -3px 0 #000,3px -3px 0 #000,-3px 3px 0 #000,3px 3px 0 #000,0 5px 0 #000;animation:pin .55s cubic-bezier(.2,1.8,.4,1) both,wob 1s ease-in-out .55s infinite}
+@keyframes pin{0%{transform:scale(3);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes wob{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) scale(1.05)}}
+.pumpkins{position:relative;width:100%;height:190px;margin:24px 0 8px}
+.pk{position:absolute;bottom:0;filter:drop-shadow(0 0 16px rgba(255,140,40,.85));animation:laugh .32s ease-in-out infinite alternate;transform-origin:50% 100%}
+.pk .mouth{transform-box:fill-box;transform-origin:50% 20%;animation:mouth .16s ease-in-out infinite alternate}
+.pk .eyes{transform-box:fill-box;transform-origin:50% 100%;animation:squint .32s ease-in-out infinite alternate}
+@keyframes laugh{0%{transform:translateY(0) rotate(-7deg)}100%{transform:translateY(-14px) rotate(7deg)}}
+@keyframes mouth{0%{transform:scaleY(.45)}100%{transform:scaleY(1.25)}}
+@keyframes squint{0%{transform:scaleY(1)}100%{transform:scaleY(.55)}}
+.ha{position:absolute;font-family:'Lilita One',sans-serif;color:#fff;text-shadow:-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,2px 2px 0 #000;animation:ha 1.2s ease-out infinite;pointer-events:none}
+@keyframes ha{0%{transform:scale(.3);opacity:0}25%{opacity:1;transform:scale(1.1) translateY(-10px)}100%{transform:translateY(-60px);opacity:0}}
+.shaking{animation:cshake .09s linear infinite !important}
+@keyframes cshake{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(-4px,2px) rotate(-3deg)}50%{transform:translate(4px,-2px) rotate(2deg)}75%{transform:translate(-3px,-1px) rotate(-2deg)}100%{transform:translate(4px,1px) rotate(3deg)}}
+.app{position:relative;width:100%;max-width:480px;height:100vh;height:100dvh;margin:0 auto;overflow:hidden;background:#120c0d}
+.top{top:max(16px,env(safe-area-inset-top))}
+@media (min-width:600px) and (min-height:700px){
+  body{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,#25262e,#0b0b0e 70%)}
+  .app{width:390px;height:844px;border-radius:48px;border:11px solid #111;box-shadow:0 0 0 2px #3a3a40,0 30px 60px rgba(0,0,0,.6)}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="bg" aria-hidden="true">
+    <svg class="room" viewBox="0 0 400 880" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="wp" width="28" height="40" patternUnits="userSpaceOnUse"><rect width="28" height="40" fill="#2a1a1d"/><rect x="0" width="14" height="40" fill="#311f23"/><path d="M14 8 l5 8 -5 8 -5 -8z" fill="#3c262b"/></pattern>
+        <linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2216"/><stop offset="1" stop-color="#1c0f09"/></linearGradient>
+        <radialGradient id="cg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd99a" stop-opacity=".9"/><stop offset="1" stop-color="#ffb05a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="mw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fc3ff"/><stop offset="1" stop-color="#3a5aa0"/></linearGradient>
+      </defs>
+      <rect width="400" height="560" fill="url(#wp)"/>
+      <rect y="0" width="400" height="30" fill="#1a0f11"/>
+      <rect y="30" width="400" height="8" fill="#4a2c1c"/>
+      <rect x="40" y="130" width="78" height="230" fill="url(#mw)" opacity=".75"/>
+      <rect x="282" y="130" width="78" height="230" fill="url(#mw)" opacity=".75"/>
+      <g stroke="#1a0f11" stroke-width="5"><path d="M79 130 V360 M40 245 H118"/><path d="M321 130 V360 M282 245 H360"/></g>
+      <rect x="36" y="126" width="86" height="238" fill="none" stroke="#3b2418" stroke-width="7"/>
+      <rect x="278" y="126" width="86" height="238" fill="none" stroke="#3b2418" stroke-width="7"/>
+      <path d="M20 110 H140 V120 Q120 220 132 380 L112 380 Q100 240 120 122 H40 Q60 240 48 380 L28 380 Q40 220 20 120Z" fill="#7a0f14"/>
+      <path d="M260 110 H380 V120 Q360 220 372 380 L352 380 Q340 240 360 122 H280 Q300 240 288 380 L268 380 Q280 220 260 120Z" fill="#7a0f14"/>
+      <rect x="18" y="104" width="124" height="10" fill="#c49a3c"/><rect x="258" y="104" width="124" height="10" fill="#c49a3c"/>
+      <rect x="160" y="140" width="80" height="100" fill="#1b1012" stroke="#c49a3c" stroke-width="6"/>
+      <rect x="170" y="150" width="60" height="80" fill="#3b2a24"/>
+      <circle cx="200" cy="180" r="14" fill="#2a1c18"/><rect x="186" y="196" width="28" height="34" fill="#2a1c18"/>
+      <rect x="140" y="380" width="120" height="120" fill="#2b1a14"/>
+      <rect x="128" y="368" width="144" height="16" fill="#4a2c1c"/>
+      <rect x="160" y="410" width="80" height="90" fill="#0c0606"/>
+      <ellipse class="chand" cx="200" cy="480" rx="34" ry="18" fill="#ff8a2a" opacity=".85"/>
+      <path class="chand" d="M178 498 Q186 470 194 486 Q200 460 206 486 Q214 470 222 498Z" fill="#ffc35a"/>
+      <rect y="440" width="400" height="120" fill="#341f15"/>
+      <g fill="#2a170f"><rect x="0" y="448" width="120" height="100" rx="3" opacity=".6"/><rect x="280" y="448" width="120" height="100" rx="3" opacity=".6"/></g>
+      <rect y="440" width="400" height="8" fill="#4a2c1c"/>
+      <rect x="140" y="440" width="120" height="120" fill="#2b1a14"/>
+      <rect x="160" y="440" width="80" height="60" fill="#0c0606"/>
+      <ellipse class="chand" cx="200" cy="490" rx="40" ry="14" fill="#ff7a1a" opacity=".8"/>
+      <path class="chand" d="M176 500 Q184 466 194 484 Q200 452 206 484 Q216 466 224 500Z" fill="#ffc35a"/>
+      <rect x="128" y="430" width="144" height="14" fill="#5a3522"/>
+      <polygon points="0,560 400,560 400,880 0,880" fill="url(#fl)"/>
+      <g stroke="#160b06" stroke-width="2" opacity=".8">
+        <line x1="200" y1="560" x2="-200" y2="880"/><line x1="200" y1="560" x2="-60" y2="880"/><line x1="200" y1="560" x2="80" y2="880"/><line x1="200" y1="560" x2="200" y2="880"/><line x1="200" y1="560" x2="320" y2="880"/><line x1="200" y1="560" x2="460" y2="880"/><line x1="200" y1="560" x2="600" y2="880"/>
+        <line x1="0" y1="600" x2="400" y2="600"/><line x1="0" y1="660" x2="400" y2="660"/><line x1="0" y1="750" x2="400" y2="750"/>
+      </g>
+      <polygon points="168,560 232,560 330,880 70,880" fill="#7a0f14"/>
+      <polygon points="174,560 226,560 314,880 86,880" fill="#9a1419"/>
+      <polygon points="168,560 232,560 236,566 164,566" fill="#c49a3c"/>
+      <g class="chand">
+        <ellipse cx="200" cy="80" rx="120" ry="80" fill="url(#cg)"/>
+        <line x1="200" y1="0" x2="200" y2="58" stroke="#8a6a2a" stroke-width="3"/>
+        <path d="M160 70 Q200 98 240 70" stroke="#c49a3c" stroke-width="5" fill="none"/>
+        <rect x="156" y="56" width="6" height="14" fill="#fff1c8"/><rect x="180" y="62" width="6" height="14" fill="#fff1c8"/><rect x="214" y="62" width="6" height="14" fill="#fff1c8"/><rect x="238" y="56" width="6" height="14" fill="#fff1c8"/>
+        <circle cx="159" cy="52" r="5" fill="#ffd27a"/><circle cx="183" cy="58" r="5" fill="#ffd27a"/><circle cx="217" cy="58" r="5" fill="#ffd27a"/><circle cx="241" cy="52" r="5" fill="#ffd27a"/>
+      </g>
+      <rect x="0" y="380" width="22" height="180" fill="#3b2418"/><rect x="378" y="380" width="22" height="180" fill="#3b2418"/>
+    </svg>
+    <div class="dust" style="left: 20%; top: 70%; animation-delay: 0s"></div>
+    <div class="dust" style="left: 64%; top: 80%; animation-delay: -3s"></div>
+    <div class="dust" style="left: 40%; top: 60%; animation-delay: -6s"></div>
+    <div class="dust" style="left: 82%; top: 66%; animation-delay: -1.5s"></div>
+    <div class="vig"></div>
+  </div>
+  <div class="top" id="top" hidden>
+    <div class="chip">
+      <div class="ava"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="7" width="3" height="3" fill="#111"/><rect x="12" y="7" width="3" height="3" fill="#111"/><path d="M6 13 Q10 16 14 13" stroke="#111" stroke-width="1.6" fill="none"/></svg></div>
+      <span id="chipNick"></span>
+    </div>
+  </div>
+  <div class="ui" id="ui"></div>
+</div>
+
+<template id="tpl-pumpkins">
+          <svg class="pk" style="left: 0%; width: 26%; animation-delay: -.1s" viewBox="0 0 100 90"><path d="M46 14 Q48 2 58 4 L56 8 Q52 8 52 16Z" fill="#3a6b2a"/><ellipse cx="30" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="70" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="50" cy="52" rx="26" ry="36" fill="#f57e1c"/><g class="eyes"><path d="M26 40 Q36 28 44 40Z" fill="#ffe27a"/><path d="M56 40 Q64 28 74 40Z" fill="#ffe27a"/></g><path class="mouth" d="M22 56 Q50 92 78 56 Q50 66 22 56Z" fill="#ffe27a"/></svg>
+          <svg class="pk" style="left: 20%; width: 20%; bottom: 46%; animation-delay: -.22s" viewBox="0 0 100 90"><path d="M46 14 Q48 2 58 4 L56 8 Q52 8 52 16Z" fill="#3a6b2a"/><ellipse cx="30" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="70" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="50" cy="52" rx="26" ry="36" fill="#f57e1c"/><g class="eyes"><path d="M26 40 Q36 28 44 40Z" fill="#ffe27a"/><path d="M56 40 Q64 28 74 40Z" fill="#ffe27a"/></g><path class="mouth" d="M22 56 Q50 92 78 56 Q50 66 22 56Z" fill="#ffe27a"/></svg>
+          <svg class="pk" style="left: 33%; width: 34%; animation-delay: 0s" viewBox="0 0 100 90"><path d="M46 14 Q48 2 58 4 L56 8 Q52 8 52 16Z" fill="#3a6b2a"/><ellipse cx="30" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="70" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="50" cy="52" rx="26" ry="36" fill="#f57e1c"/><g class="eyes"><path d="M26 40 Q36 28 44 40Z" fill="#ffe27a"/><path d="M56 40 Q64 28 74 40Z" fill="#ffe27a"/></g><path class="mouth" d="M22 56 Q50 92 78 56 Q50 66 22 56Z" fill="#ffe27a"/></svg>
+          <svg class="pk" style="left: 60%; width: 20%; bottom: 46%; animation-delay: -.16s" viewBox="0 0 100 90"><path d="M46 14 Q48 2 58 4 L56 8 Q52 8 52 16Z" fill="#3a6b2a"/><ellipse cx="30" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="70" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="50" cy="52" rx="26" ry="36" fill="#f57e1c"/><g class="eyes"><path d="M26 40 Q36 28 44 40Z" fill="#ffe27a"/><path d="M56 40 Q64 28 74 40Z" fill="#ffe27a"/></g><path class="mouth" d="M22 56 Q50 92 78 56 Q50 66 22 56Z" fill="#ffe27a"/></svg>
+          <svg class="pk" style="left: 74%; width: 26%; animation-delay: -.28s" viewBox="0 0 100 90"><path d="M46 14 Q48 2 58 4 L56 8 Q52 8 52 16Z" fill="#3a6b2a"/><ellipse cx="30" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="70" cy="52" rx="24" ry="34" fill="#d9650f"/><ellipse cx="50" cy="52" rx="26" ry="36" fill="#f57e1c"/><g class="eyes"><path d="M26 40 Q36 28 44 40Z" fill="#ffe27a"/><path d="M56 40 Q64 28 74 40Z" fill="#ffe27a"/></g><path class="mouth" d="M22 56 Q50 92 78 56 Q50 66 22 56Z" fill="#ffe27a"/></svg>
+          <span class="ha" style="left: 4%; top: -12%; font-size: 30px; animation-delay: 0s">HA</span>
+          <span class="ha" style="left: 28%; top: -26%; font-size: 24px; animation-delay: .4s">HA</span>
+          <span class="ha" style="left: 40%; top: -6%; font-size: 34px; animation-delay: .8s">HA HA</span>
+          <span class="ha" style="left: 66%; top: -24%; font-size: 26px; animation-delay: .2s">HA</span>
+          <span class="ha" style="left: 82%; top: -10%; font-size: 30px; animation-delay: .6s">HA</span>
+        </div>
+</template>
+
+<script>
+const SKINS = [
+  { name: "Chroma Traveler's Gun", chroma: true,  img: 'images/traveler.png' },
+  { name: 'Chroma Evergreen',      chroma: true,  img: 'images/evergreen.png' },
+  { name: 'Embersickle',           chroma: false, img: 'images/embersickle.png' },
+  { name: "Chroma Vampire's Gun",  chroma: true,  img: 'images/vampire.png' },
+  { name: 'Chroma Embersickle',    chroma: true,  img: 'images/embersickle_chroma.png' },
+  { name: 'Chroma Emberscythe',    chroma: true,  img: 'images/emberscythe.png' }
+];
+// preload images
+[...SKINS.map(s => s.img), 'images/box.png'].forEach(src => { const i = new Image(); i.src = src; });
+
+const ui = document.getElementById('ui');
+const topBar = document.getElementById('top');
+const chipNick = document.getElementById('chipNick');
+let nick = '', last = -1, skin = null, timers = [];
+
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+const clearAll = () => { timers.forEach(t => { clearTimeout(t); clearInterval(t); }); timers = []; };
+const pick = () => { let i = last; while (i === last) i = Math.floor(Math.random() * SKINS.length); last = i; return SKINS[i]; };
+
+function showNick() {
+  clearAll(); nick = ''; last = -1; skin = null;
+  topBar.hidden = true;
+  ui.innerHTML = `
+    <div class="panel" id="panel">
+      <div class="phead t">Unbox</div>
+      <div class="pbody">
+        <label for="nick" class="t" style="display:block;font-size:16px;margin-bottom:12px">Enter your username</label>
+        <input id="nick" class="field" type="text" maxlength="20" autocomplete="off" placeholder="Username">
+        <div style="margin-top:18px"><button class="btn" type="button" id="confirm">Confirm</button></div>
+      </div>
+    </div>`;
+  const input = document.getElementById('nick');
+  const go = () => {
+    const v = input.value.trim();
+    if (!v) { input.classList.remove('err'); void input.offsetWidth; input.classList.add('err'); return; }
+    nick = v; input.blur();
+    document.getElementById('panel').classList.add('out');
+    later(showCase, 380);
+  };
+  document.getElementById('confirm').onclick = go;
+  input.onkeydown = e => { if (e.key === 'Enter') go(); };
+  input.oninput = () => input.classList.remove('err');
+}
+
+function showCase() {
+  clearAll();
+  chipNick.textContent = nick; topBar.hidden = false;
+  ui.innerHTML = `
+    <div class="halo" aria-hidden="true"></div>
+    <div class="beam" aria-hidden="true"></div>
+    <div class="spark" style="left:46%;animation-delay:.2s"></div>
+    <div class="spark" style="left:53%;animation-delay:1.1s"></div>
+    <div class="spark" style="left:49%;animation-delay:1.9s"></div>
+    <div class="spark" style="left:56%;animation-delay:2.5s"></div>
+    <div class="spark" style="left:42%;animation-delay:.7s"></div>
+    <svg class="feather" style="left:44%;animation-delay:.4s" viewBox="0 0 18 34" aria-hidden="true"><path d="M9 33 L9 4 M9 4 Q17 10 15 22 Q12 28 9 30 Q6 28 3 22 Q1 10 9 4Z" fill="#fffbea" stroke="#fffbea" stroke-width="1" opacity=".9"/></svg>
+    <svg class="feather" style="left:56%;animation-delay:2.4s" viewBox="0 0 18 34" aria-hidden="true"><path d="M9 33 L9 4 M9 4 Q17 10 15 22 Q12 28 9 30 Q6 28 3 22 Q1 10 9 4Z" fill="#fffbea" stroke="#fffbea" stroke-width="1" opacity=".9"/></svg>
+    <div style="position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;margin-top:140px">
+      <div class="drop">
+        <div class="shadow"></div>
+        <div class="impact"></div>
+        <div class="float">
+          <div id="box" style="position:absolute;inset:0">
+            <div class="aura"></div>
+            <img class="boximg" src="images/box.png" alt="Godly box">
+          </div>
+        </div>
+      </div>
+      <div class="t clabel">Godly Box</div>
+      <div class="btnrow" id="btnrow"></div>
+    </div>`;
+  later(() => {
+    const row = document.getElementById('btnrow');
+    row.innerHTML = '<button class="btn pulse" type="button" id="open">Open</button>';
+    document.getElementById('open').onclick = openCase;
+  }, 1200);
+}
+
+function openCase() {
+  document.getElementById('btnrow').innerHTML = '';
+  skin = pick();
+  const box = document.getElementById('box');
+  box.classList.add('shaking');
+  box.insertAdjacentHTML('beforeend', '<div class="charge"></div>');
+  later(showReveal, 1300);
+}
+
+function showReveal() {
+  clearAll();
+  ui.innerHTML = `
+    <div class="flash"></div>
+    <div class="reveal">
+      <div class="raura ${skin.chroma ? 'c' : 'g'}"></div>
+      <div class="rays"></div>
+      <div class="t" style="position:relative;font-size:18px;letter-spacing:3px;animation:up .45s ease-out .25s both">You got</div>
+      <div class="itembox"><img src="${skin.img}" alt="${esc(skin.name)}"></div>
+      <div class="t iname">${esc(skin.name)}</div>
+      ${skin.chroma ? '<div class="t rar chroma">Chroma</div>' : '<div class="t rar godly">Godly</div>'}
+      <div style="position:relative;margin-top:22px;animation:up .45s ease-out .85s both">
+        <button class="btn green pulse" type="button" id="claim">Claim</button>
+      </div>
+    </div>`;
+  document.getElementById('claim').onclick = showLoading;
+}
+
+function showLoading() {
+  clearAll();
+  ui.innerHTML = `
+    <div class="panel">
+      <div class="phead t">Claiming</div>
+      <div class="pbody">
+        <div class="mini"><img src="${skin.img}" alt="${esc(skin.name)}"></div>
+        <div class="spinner"></div>
+        <div class="t" id="status" style="font-size:14px;margin:0 0 14px;min-height:20px">Connecting…</div>
+        <div class="track"><div class="fill" id="fill" style="width:0%"></div></div>
+        <div class="t" id="pct" style="margin-top:12px;font-size:22px">0%</div>
+      </div>
+    </div>`;
+  const fill = document.getElementById('fill'), pctEl = document.getElementById('pct'), st = document.getElementById('status');
+  let p = 0;
+  const iv = setInterval(() => {
+    if (p >= 99) { clearInterval(iv); later(showPrank, 350); return; }
+    p = Math.min(99, p + 2.4 + Math.random() * 1.4);
+    const v = Math.floor(p);
+    fill.style.width = v + '%'; pctEl.textContent = v + '%';
+    st.textContent = v >= 99 ? 'Finalizing…' : v >= 85 ? 'Almost done…' : v >= 55 ? 'Sending item…' : v >= 25 ? 'Finding ' + nick + '…' : 'Connecting…';
+  }, 50);
+  timers.push(iv);
+}
+
+function showPrank() {
+  clearAll();
+  ui.innerHTML = `
+    <button class="prank" type="button" id="restart" aria-label="Restart">
+      <div class="ptxt">IT'S A<br>PRANK!</div>
+      <div class="pumpkins" aria-hidden="true">${document.getElementById('tpl-pumpkins').innerHTML}</div>
+      <div class="t" style="font-size:17px;margin:4px 0 22px">Got you, ${esc(nick)}!</div>
+      <span class="t" style="font-size:13px;letter-spacing:2px;opacity:.8">Tap to restart</span>
+    </button>`;
+  document.getElementById('restart').onclick = showNick;
+}
+
+showNick();
+</script>
+</body>
+</html>
